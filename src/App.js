@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import Header from './layout/Header';
 import Footer from './layout/Footer';
-import Home from './pages/Home';
 import Singin from './pages/Singin';
 import Singup from './pages/Singup';
 // import Test from './pages/Test';
@@ -19,7 +18,7 @@ function App() {
 
      <Routes>
 
-            <Route path="/" element={<Maincontent/>}/>
+            <Route path="/*" element={<Maincontent/>}/>
             <Route path="/Singin" element={<Singin/>}/>
             <Route path="/Singup" element={<Singup/>}/>
             {/* <Route path="/Test" element={<Test/>}/> */}

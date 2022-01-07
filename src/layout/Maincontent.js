@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import Header from  '../layout/Header';
 import Test from  '../pages/Test'
+import Home from  '../pages/Home'
+import About from  '../pages/About'
 
 const Maincontent = () => {
     return (
@@ -15,6 +17,8 @@ const Maincontent = () => {
             <Routes>
 
             <Route path="/" element={<Test/>}/>
+            <Route path="/Home" element={<Home/>}/>
+            <Route path="/About" element={<About/>}/>
 
 
 
