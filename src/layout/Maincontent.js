@@ -9,6 +9,8 @@ import Header from  '../layout/Header';
 import Test from  '../pages/Test'
 import Home from  '../pages/Home'
 import About from  '../pages/About'
+import Education from  '../pages/Education'
+import Experience from  '../pages/Experience'
 
 const Maincontent = () => {
     return (
@@ -19,6 +21,8 @@ const Maincontent = () => {
             <Route path="/" element={<Test/>}/>
             <Route path="/Home" element={<Home/>}/>
             <Route path="/About" element={<About/>}/>
+            <Route path="/Education" element={<Education/>}/>
+            <Route path="/Experience" element={<Experience/>}/>
 
 
 

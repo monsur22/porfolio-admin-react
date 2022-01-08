@@ -1,6 +1,6 @@
 import React from 'react'
 
-const About = () => {
+const Experience = () => {
     return (
         <>
             <section className="content">
@@ -8,9 +8,9 @@ const About = () => {
                 <div className="block-header">
                 <div className="row">
                     <div className="col-lg-7 col-md-6 col-sm-12">
-                    <h2>About</h2>
+                    <h2>Experience</h2>
                     <ul className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="index.html"><i className="zmdi zmdi-home" /> About</a></li>
+                        <li className="breadcrumb-item"><a href="index.html"><i className="zmdi zmdi-home" /> Experience</a></li>
                     </ul>
                     {/* <button className="btn btn-primary btn-icon mobile_menu" type="button"><i className="zmdi zmdi-sort-amount-desc" /></button> */}
                     </div>
@@ -39,17 +39,37 @@ const About = () => {
                         <form className="form-horizontal">
                             <div className="row clearfix">
                                 <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Tittle</label>
+                                    <label htmlFor="email_address_2">Position</label>
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Tittle" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Position" />
                                     </div>
                                 </div>
                             </div>
                             <div className="row clearfix">
                                 <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Short Description</label>
+                                    <label htmlFor="email_address_2">Year</label>
+                                </div>
+                                <div className="col-lg-10 col-md-10 col-sm-8">
+                                    <div className="form-group">
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Year" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row clearfix">
+                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label htmlFor="email_address_2">Company</label>
+                                </div>
+                                <div className="col-lg-10 col-md-10 col-sm-8">
+                                    <div className="form-group">
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Company" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row clearfix">
+                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label htmlFor="email_address_2">Short Description First</label>
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div class="form-group">
@@ -61,72 +81,36 @@ const About = () => {
                             </div>
                             <div className="row clearfix">
                                 <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Birthday</label>
-                                </div>
-                                <div className="col-lg-10 col-md-10 col-sm-8">
-                                    <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Birthday" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row clearfix">
-                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Age</label>
-                                </div>
-                                <div className="col-lg-10 col-md-10 col-sm-8">
-                                    <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Age" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row clearfix">
-                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Website</label>
-                                </div>
-                                <div className="col-lg-10 col-md-10 col-sm-8">
-                                    <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Website" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row clearfix">
-                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Degree</label>
-                                </div>
-                                <div className="col-lg-10 col-md-10 col-sm-8">
-                                    <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Degree" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row clearfix">
-                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Email</label>
-                                </div>
-                                <div className="col-lg-10 col-md-10 col-sm-8">
-                                    <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Email" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row clearfix">
-                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">City</label>
-                                </div>
-                                <div className="col-lg-10 col-md-10 col-sm-8">
-                                    <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="City" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row clearfix">
-                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Description</label>
+                                    <label htmlFor="email_address_2">Short Description Second</label>
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div class="form-group">
                                             <div class="form-line">
-                                                <textarea rows="4" class="form-control no-resize" placeholder="Description"></textarea>
+                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"></textarea>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row clearfix">
+                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label htmlFor="email_address_2">Short Description Third</label>
+                                </div>
+                                <div className="col-lg-10 col-md-10 col-sm-8">
+                                    <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"></textarea>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row clearfix">
+                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label htmlFor="email_address_2">Short Description Fourth</label>
+                                </div>
+                                <div className="col-lg-10 col-md-10 col-sm-8">
+                                    <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"></textarea>
                                             </div>
                                     </div>
                                 </div>
@@ -151,4 +135,4 @@ const About = () => {
     )
 }
 
-export default About;
+export default Experience;
