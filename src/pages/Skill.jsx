@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Experience = () => {
+const Skill = () => {
     return (
         <>
             <section className="content">
@@ -8,9 +8,9 @@ const Experience = () => {
                 <div className="block-header">
                 <div className="row">
                     <div className="col-lg-7 col-md-6 col-sm-12">
-                    <h2>Experience</h2>
+                    <h2>Skill</h2>
                     <ul className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="index.html"><i className="zmdi zmdi-home" /> Experience</a></li>
+                        <li className="breadcrumb-item"><a href="index.html"><i className="zmdi zmdi-home" /> Skill</a></li>
                     </ul>
                     {/* <button className="btn btn-primary btn-icon mobile_menu" type="button"><i className="zmdi zmdi-sort-amount-desc" /></button> */}
                     </div>
@@ -39,73 +39,27 @@ const Experience = () => {
                         <form className="form-horizontal">
                             <div className="row clearfix">
                                 <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Position</label>
+                                    <label htmlFor="email_address_2">Tittle</label>
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Position" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Tittle" />
                                     </div>
                                 </div>
                             </div>
                             <div className="row clearfix">
                                 <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Year</label>
+                                    <label htmlFor="email_address_2">Image</label>
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Year" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Year Range" />
                                     </div>
                                 </div>
                             </div>
                             <div className="row clearfix">
                                 <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Company</label>
-                                </div>
-                                <div className="col-lg-10 col-md-10 col-sm-8">
-                                    <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Company" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row clearfix">
-                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Short Description First</label>
-                                </div>
-                                <div className="col-lg-10 col-md-10 col-sm-8">
-                                    <div class="form-group">
-                                            <div class="form-line">
-                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"></textarea>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row clearfix">
-                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Short Description Second</label>
-                                </div>
-                                <div className="col-lg-10 col-md-10 col-sm-8">
-                                    <div class="form-group">
-                                            <div class="form-line">
-                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"></textarea>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row clearfix">
-                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Short Description Third</label>
-                                </div>
-                                <div className="col-lg-10 col-md-10 col-sm-8">
-                                    <div class="form-group">
-                                            <div class="form-line">
-                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"></textarea>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row clearfix">
-                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
-                                    <label htmlFor="email_address_2">Short Description Fourth</label>
+                                    <label htmlFor="email_address_2">Short Description</label>
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div class="form-group">
@@ -128,7 +82,8 @@ const Experience = () => {
 
 
                 </div>
-                <div className="container-fluid">
+            </div>
+            <div className="container-fluid">
                 {/* Basic Examples */}
                 <div className="row clearfix">
                     <div className="col-lg-12">
@@ -173,11 +128,10 @@ const Experience = () => {
                     </div>
                 </div>
                 </div>
-            </div>
             </section>
 
         </>
     )
 }
 
-export default Experience;
+export default Skill;
