@@ -260,7 +260,14 @@ const Header = () => {
                 <li><a href="javascript:void(0);" className="app_google_drive" title="Google Drive"><i className="zmdi zmdi-google-drive" /></a></li>
                 <li><a href="javascript:void(0);" className="app_group_work" title="Group Work"><i className="zmdi zmdi-group-work" /></a></li>
                 <li><a href="javascript:void(0);" className="js-right-sidebar" title="Setting"><i className="zmdi zmdi-settings zmdi-hc-spin" /></a></li>
-                <li><a href="sign-in.html" className="mega-menu" title="Sign Out"><i className="zmdi zmdi-power" /></a></li>
+                {
+                userInfo ? (
+                    // <a onClick={logutHandler}>Logout</a>
+                    <li><a  className="mega-menu" title="Sign Out" onClick={logoutHandler}><i className="zmdi zmdi-power" /></a></li>
+
+
+                    ):  <a href=""></a>
+                    }
                 </ul>
             </div>
             {/* Left Sidebar */}
