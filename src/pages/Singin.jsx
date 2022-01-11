@@ -21,14 +21,18 @@ const Singin =  ({location}) => {
         }
     }, [ userInfo])
 
-    const submitHandler = (e) =>{
+    function submitHandler (e){
         e.preventDefault()
         dispatch(login(email, password))
+        console.log('Hello');
     }
-
+    // function handleSubmit(e) {
+    //     e.preventDefault();
+    //     console.log('You clicked submit.');
+    //   }
     return (
         // <div className='container'>
-        //     <form onSubmit={submitHandler}>
+        //     <form >
         //         <div className="form-group mt-3">
         //             <label htmlFor="exampleInputEmail1">Email address</label>
         //             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"autoComplete='off' onChange={(e) => setEmail(e.target.value)} />
@@ -37,7 +41,7 @@ const Singin =  ({location}) => {
         //             <label htmlFor="exampleInputPassword1">Password</label>
         //             <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" autoComplete='off'onChange={(e) => setPassword(e.target.value)}/>
         //         </div>
-        //         <button type="submit" className="btn btn-primary mt-2">Submit</button>
+        //         <button type="submit" className="btn btn-primary mt-2" onClick={submitHandler}>Submit</button>
         //     </form>
         // </div>
         <>
@@ -45,7 +49,7 @@ const Singin =  ({location}) => {
             <div className="container">
                 <div className="row">
                 <div className="col-lg-4 col-sm-12">
-                    <form className="card auth_form" onSubmit={submitHandler}>
+                    <form className="card auth_form" >
                     <div className="header">
                         <img className="logo" src="assets/images/logo.svg" alt />
                         <h5>Log in</h5>
@@ -64,7 +68,7 @@ const Singin =  ({location}) => {
                         </div>
                         </div>
 
-                        <button type="submit" className="btn btn-primary btn-block waves-effect waves-light">SIGN IN</button>
+                        <button type="submit" className="btn btn-primary btn-block waves-effect waves-light"onClick={submitHandler}>SIGN IN</button>
 
                     </div>
                     </form>
