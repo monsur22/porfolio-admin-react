@@ -31,19 +31,6 @@ const Singin =  ({location}) => {
     //     console.log('You clicked submit.');
     //   }
     return (
-        // <div className='container'>
-        //     <form >
-        //         <div className="form-group mt-3">
-        //             <label htmlFor="exampleInputEmail1">Email address</label>
-        //             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"autoComplete='off' onChange={(e) => setEmail(e.target.value)} />
-        //         </div>
-        //         <div className="form-group mt-3">
-        //             <label htmlFor="exampleInputPassword1">Password</label>
-        //             <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" autoComplete='off'onChange={(e) => setPassword(e.target.value)}/>
-        //         </div>
-        //         <button type="submit" className="btn btn-primary mt-2" onClick={submitHandler}>Submit</button>
-        //     </form>
-        // </div>
         <>
             <div className="authentication">
             <div className="container">
