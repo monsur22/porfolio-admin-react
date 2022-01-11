@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../actions/userAction';
 
@@ -11,26 +10,19 @@ const Singin =  ({location}) => {
 
     const dispatch = useDispatch()
     const userLogin = useSelector((state) => state.userLogin)
-    const { error, userInfo } = userLogin
+    const {  userInfo } = userLogin
 
     // const redirect = location.state ? location.state.split('=')[1] : '/'
     useEffect(() => {
         if (userInfo){
-            // navigate(redirect,{replace: true})
             navigate('/', {replace: true});
-            // return <Navigate to="/"/>
         }
     }, [ userInfo])
 
     function submitHandler (e){
         e.preventDefault()
         dispatch(login(email, password))
-        console.log('Hello');
     }
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     console.log('You clicked submit.');
-    //   }
     return (
         <>
             <div className="authentication">
@@ -39,7 +31,7 @@ const Singin =  ({location}) => {
                 <div className="col-lg-4 col-sm-12">
                     <form className="card auth_form" >
                     <div className="header">
-                        <img className="logo" src="assets/images/logo.svg" alt />
+                        <img className="logo" src="assets/images/logo.svg" alt=""/>
                         <h5>Log in</h5>
                     </div>
                     <div className="body">
@@ -68,7 +60,7 @@ const Singin =  ({location}) => {
                 </div>
                 <div className="col-lg-8 col-sm-12">
                     <div className="card">
-                    <img src="assets/images/signin.svg" alt="Sign In" />
+                    <img src="assets/images/signin.svg" alt=""/>
                     </div>
                 </div>
                 </div>

@@ -1,29 +1,20 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import { useNavigate, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../actions/userAction';
+import React, { useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 
 const Test = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+
     const  navigate = useNavigate();
-
-    const dispatch = useDispatch()
     const userLogin = useSelector((state) => state.userLogin)
-    const { error, userInfo } = userLogin
+    const {  userInfo } = userLogin
 
-    // const redirect = location.state ? location.state.split('=')[1] : '/'
     useEffect(() => {
         if (!userInfo){
-            // navigate(redirect,{replace: true})
             navigate('/singin', {replace: true});
-            // return <Navigate to="/"/>
         }
     }, [ userInfo])
     return (
         <>
-            {/* Main Content */}
             <section className="content">
                 <div className>
                 <div className="block-header">
