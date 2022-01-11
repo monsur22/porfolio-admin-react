@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { register } from '../actions/userAction';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Singup = () => {
     const [name, setName] = useState('')
@@ -16,7 +14,7 @@ const Singup = () => {
 
     const dispatch = useDispatch()
     const userRegister = useSelector((state) => state.userRegister)
-    const { loading, error, userInfo } = userRegister
+    // const { loading, error, userInfo } = userRegister
 
     console.log(userRegister)
     const user = JSON.parse(localStorage.getItem('userInfo'))
@@ -63,7 +61,7 @@ const Singup = () => {
                 {message && <div>{message}</div>}
                     <form className="card auth_form">
                     <div className="header">
-                        <img className="logo" src="assets/images/logo.svg" alt />
+                        <img className="logo" src="assets/images/logo.svg"  />
                         <h5>Sign Up</h5>
                         <span>Register a new membership</span>
                     </div>
@@ -103,7 +101,7 @@ const Singup = () => {
                 </div>
                 <div className="col-lg-8 col-sm-12">
                     <div className="card">
-                    <img src="assets/images/signup.svg" alt="Sign Up" />
+                    <img src="assets/images/signup.svg"  />
                     </div>
                 </div>
                 </div>
