@@ -28,7 +28,19 @@ const Singup = () => {
         // console.log(user)
     }, [ user])
 
-    const submitHandler=(e)=>{
+    // const submitHandler=(e)=>{
+    //     e.preventDefault()
+    //     console.log(email, password)
+    //     if(password !== conpassword){
+    //         setMessage('Password do not match')
+    //         console.log("Password Missmatch")
+
+    //     }else{
+    //         dispatch(register(name, email, password))
+    //     }
+
+    // }
+    function submitHandler (e){
         e.preventDefault()
         console.log(email, password)
         if(password !== conpassword){
@@ -37,39 +49,18 @@ const Singup = () => {
 
         }else{
             dispatch(register(name, email, password))
-        }
+            navigate("/");
 
+        }
+        console.log('Hello');
     }
     return (
-        // <div className='container'>
-        //     <form onSubmit={submitHandler}>
-        //     {message && <div>{message}</div>}
-        //         <div className="form-group">
-        //             <label htmlFor="exampleInputEmail1">Name</label>
-        //             <input type="text" className="form-control" id="exampleInputEmail1" name="name"aria-describedby="emailHelp" placeholder="Enter Name"onChange={(e) => setName(e.target.value)} />
-        //         </div>
-        //         <div className="form-group mt-3">
-        //             <label htmlFor="exampleInputEmail1">Email address</label>
-        //             <input type="email" className="form-control " id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email"onChange={(e) => setEmail(e.target.value)} />
-        //         </div>
-        //         <div className="form-group mt-3">
-        //             <label htmlFor="exampleInputPassword1">Password</label>
-        //             <input type="password" className="form-control " id="exampleInputPassword1"name="password" placeholder="Password"onChange={(e) => setPassword(e.target.value)} />
-        //         </div>
-        //         <div className="form-group mt-3">
-        //             <label htmlFor="exampleInputPassword1">Password</label>
-        //             <input type="password" className="form-control " id="exampleInputPassword1"name="conpassword" placeholder="Re-Password"onChange={(e) => setConpassword(e.target.value)} />
-        //         </div>
-
-        //         <button type="submit" className="btn btn-primary mt-2">Submit</button>
-        //     </form>
-        // </div>
-
         <>
             <div className="authentication">
             <div className="container">
                 <div className="row">
                 <div className="col-lg-4 col-sm-12">
+                {message && <div>{message}</div>}
                     <form className="card auth_form">
                     <div className="header">
                         <img className="logo" src="assets/images/logo.svg" alt />
@@ -78,31 +69,30 @@ const Singup = () => {
                     </div>
                     <div className="body">
                         <div className="input-group mb-3">
-                        <input type="text" className="form-control" placeholder="Username" />
+                        <input type="text" className="form-control" name="name" placeholder="Enter Name"onChange={(e) => setName(e.target.value)}/>
                         <div className="input-group-append">
                             <span className="input-group-text"><i className="zmdi zmdi-account-circle" /></span>
                         </div>
                         </div>
                         <div className="input-group mb-3">
-                        <input type="text" className="form-control" placeholder="Enter Email" />
+                        <input type="email" className="form-control" placeholder="Enter Email"  name="email"  placeholder="Enter email"onChange={(e) => setEmail(e.target.value)}/>
                         <div className="input-group-append">
                             <span className="input-group-text"><i className="zmdi zmdi-email" /></span>
                         </div>
                         </div>
                         <div className="input-group mb-3">
-                        <input type="text" className="form-control" placeholder="Password" />
+                        <input type="password" className="form-control" name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                         <div className="input-group-append">
                             <span className="input-group-text"><i className="zmdi zmdi-lock" /></span>
                         </div>
                         </div>
-                        <div className="checkbox">
-                        <input id="remember_me" type="checkbox" />
-                        <label htmlFor="remember_me">I read and agree to the <a href="javascript:void(0);">terms of usage</a></label>
+                        <div className="input-group mb-3">
+                        <input type="password" className="form-control" name="conpassword" placeholder="Re-Password" onChange={(e) => setConpassword(e.target.value)} />
+                        <div className="input-group-append">
+                            <span className="input-group-text"><i className="zmdi zmdi-lock" /></span>
                         </div>
-                        <a href="index.html" className="btn btn-primary btn-block waves-effect waves-light">SIGN UP</a>
-                        <div className="signin_with mt-3">
-                        <a className="link" href="sign-in.html">You already have a membership?</a>
                         </div>
+                        <button type="submit" className="btn btn-primary btn-block waves-effect waves-light"onClick={submitHandler}>SIGN IN</button>
                     </div>
                     </form>
                     <div className="copyright text-center">

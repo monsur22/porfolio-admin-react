@@ -29,13 +29,7 @@ const Header = () => {
 
     return (
         <>
-                        {/* Page Loader */}
-            <div className="page-loader-wrapper">
-                <div className="loader">
-                <div className="m-t-30"><img className="zmdi-hc-spin" src="assets/images/loader.svg" width={48} height={48} alt="Aero" /></div>
-                <p>Please wait...</p>
-                </div>
-            </div>
+
             {/* Overlay For Sidebars */}
             <div className="overlay" />
             {/* Main Search */}

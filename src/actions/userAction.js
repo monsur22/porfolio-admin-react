@@ -11,7 +11,7 @@ export const login = (email, password) =>  async (dispatch) => {
             }
 
         }
-        const {data} = await axios.post('/api/login',{email, password, config})
+        const {data} = await axios.post('http://127.0.0.1:8000/api/login',{email, password, config})
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data})
 
         localStorage.setItem('userInfo', JSON.stringify(data))
@@ -39,7 +39,7 @@ export const register = (name, email, password) =>  async (dispatch) => {
             }
 
         }
-        const {data} = await axios.post('/api/register',{name, email, password, config})
+        const {data} = await axios.post('http://127.0.0.1:8000/api/register',{name, email, password, config})
         dispatch({ type: USER_REGISTER_SUCCESS, payload: data})
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data})
 
