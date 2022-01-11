@@ -17,7 +17,7 @@ const Singin =  ({location}) => {
         if (userInfo){
             navigate('/', {replace: true});
         }
-    }, [ userInfo])
+    }, [navigate, userInfo])
 
     function submitHandler (e){
         e.preventDefault()
