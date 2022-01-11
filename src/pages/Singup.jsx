@@ -49,7 +49,8 @@ const Singup = () => {
 
         }else{
             dispatch(register(name, email, password))
-            navigate('/', {replace: true});
+            navigate("/");
+
         }
         console.log('Hello');
     }

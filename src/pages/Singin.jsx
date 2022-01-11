@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../actions/userAction';
 
@@ -18,6 +18,7 @@ const Singin =  ({location}) => {
         if (userInfo){
             // navigate(redirect,{replace: true})
             navigate('/', {replace: true});
+            // return <Navigate to="/"/>
         }
     }, [ userInfo])
 
