@@ -1,6 +1,43 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios';
 
-const Home = () => {
+const Home = (props) => {
+    const  navigate = useNavigate();
+    const [data, setData] = useState({});
+    const [Name, setName] = useState('');
+    const [position, setPosition] = useState('');
+    const [skype, setSkype] = useState('');
+    const [github, setGithub] = useState('');
+    const [facebook, setFacebook] = useState('');
+    const [tittle, setTitle] = useState('');
+    const [linkedin, setLinkedin] = useState('');
+    const apiUrl = "http://localhost:8000/api/portfolio/home/1/edit";
+
+      console.warn("props",apiUrl)
+
+    const userLogin = useSelector((state) => state.userLogin)
+    const {  userInfo } = userLogin
+    useEffect(() => {
+        if (!userInfo){
+            navigate('/singin', {replace: true});
+        }
+    }, [ userInfo])
+    const token =  userInfo.token;
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+    console.log("config",token)
+        useEffect(() => {
+        const fetchData = async () => {
+          const result = await axios.get(apiUrl,config)
+          setData(result.data);
+          console.log(result.data);
+        };
+
+        fetchData();
+      }, []);
     return (
         <>
             <section className="content">
@@ -20,18 +57,6 @@ const Home = () => {
                 </div>
                 </div>
                 <div className="container-fluid">
-                {/* Vertical Layout */}
-                {/* <div className="row clearfix">
-                    <div className="col-lg-12 col-md-12 col-sm-12">
-                    <div className="alert alert-warning" role="alert">
-                        <strong>Bootstrap</strong> Better check yourself, <a target="_blank" href="https://getbootstrap.com/docs/4.2/components/forms/">View More</a>
-                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"><i className="zmdi zmdi-close" /></span>
-                        </button>
-                    </div>
-                    </div>
-                </div> */}
-                {/* Horizontal Layout */}
                 <div className="row clearfix">
                     <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="card">
@@ -43,7 +68,7 @@ const Home = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Name" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Name" defaultValue={data.name} onChange={(e) => setName(e.target.value)} />
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +78,7 @@ const Home = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Position" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Position" defaultValue={data.position} onChange={(e) => setPosition(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +88,7 @@ const Home = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="tittle" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Tittle" defaultValue={data.tittle} onChange={(e) => setTitle(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +98,7 @@ const Home = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Facebook" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Facebook" defaultValue={data.facebook} onChange={(e) => setFacebook(e.target.value)} />
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +108,7 @@ const Home = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Github" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Github" defaultValue={data.github} onChange={(e) => setGithub(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +118,7 @@ const Home = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Skype" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Skype" defaultValue={data.skype} onChange={(e) => setSkype(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +128,7 @@ const Home = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="LinkedIn" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="LinkedIn" defaultValue={data.linkedin} onChange={(e) => setLinkedin(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
