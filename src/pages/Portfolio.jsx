@@ -1,6 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState  } from 'react'
+import axios from 'axios';
+
 
 const Portfolio = () => {
+    const [data, setData] = useState([]);
+    useEffect(async () => {
+      await axios.get("http://localhost:8000/api/getportfolio")
+      .then(function(response) {
+          console.log(response.data);
+          setData(response.data);
+
+      })
+      .catch(function(error) {
+          console.log(error);
+      });
+      }, []);
     return (
         <>
             <section className="content">
@@ -132,34 +146,33 @@ const Portfolio = () => {
                             <table className="table table-bordered table-striped table-hover js-basic-example dataTable">
                             <thead>
                                 <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>ID</th>
+                                <th>Overview</th>
+                                <th>Technology</th>
+                                <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>ID</th>
+                                <th>Overview</th>
+                                <th>Technology</th>
+                                <th>Action</th>
                                 </tr>
                             </tfoot>
+
                             <tbody>
+                            {data.map((item) => (
                                 <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                                <td>{item.id}</td>
+                                <td>{item.overview}</td>
+                                <td>{item.technology}</td>
+                                <td>Action</td>
                                 </tr>
+                            ))}
+
                             </tbody>
+
                             </table>
                         </div>
                         </div>

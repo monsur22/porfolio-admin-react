@@ -1,6 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState  } from 'react'
+import axios from 'axios';
 
 const Experience = () => {
+    const [data, setData] = useState([]);
+    useEffect(async () => {
+      await axios.get("http://localhost:8000/api/getexperience")
+      .then(function(response) {
+          console.log(response.data);
+          setData(response.data);
+
+      })
+      .catch(function(error) {
+          console.log(error);
+      });
+      }, []);
     return (
         <>
             <section className="content">
@@ -138,34 +151,27 @@ const Experience = () => {
                             <table className="table table-bordered table-striped table-hover js-basic-example dataTable">
                             <thead>
                                 <tr>
-                                <th>Name</th>
+                                <th>ID</th>
                                 <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>Company</th>
+                                <th>Year</th>
+                                <th>Action</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                                </tr>
-                            </tbody>
+                                <tbody>
+                            {data.map((item) => (
+
+                                    <tr>
+                                    <td>{item.id}</td>
+                                    <td>{item.position}</td>
+                                    <td>{item.company}</td>
+                                    <td>{item.year}</td>
+                                    <td>Action</td>
+                                    </tr>
+                            ))}
+
+                                </tbody>
+
                             </table>
                         </div>
                         </div>
