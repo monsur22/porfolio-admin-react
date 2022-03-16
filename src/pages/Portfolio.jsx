@@ -49,6 +49,46 @@ const Portfolio = () => {
                             </div>
                             <div className="row clearfix">
                                 <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label htmlFor="email_address_2">overview</label>
+                                </div>
+                                <div className="col-lg-10 col-md-10 col-sm-8">
+                                    <div className="form-group">
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Overview" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row clearfix">
+                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label htmlFor="email_address_2">Technology</label>
+                                </div>
+                                <div className="col-lg-10 col-md-10 col-sm-8">
+                                    <div className="form-group">
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Technology" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row clearfix">
+                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label htmlFor="email_address_2">Part  Name</label>
+                                </div>
+                                <div className="col-lg-10 col-md-10 col-sm-8">
+                                    <div className="form-group">
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Part Name" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row clearfix">
+                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label htmlFor="email_address_2">Role</label>
+                                </div>
+                                <div className="col-lg-10 col-md-10 col-sm-8">
+                                    <div className="form-group">
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Role" />
+                                    </div>
+                                </div>
+                            </div>
+                            {/* <div className="row clearfix">
+                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
                                     <label htmlFor="email_address_2">Image</label>
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
@@ -56,7 +96,7 @@ const Portfolio = () => {
                                     <input type="text" id="email_address_2" className="form-control" placeholder="Year Range" />
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="row clearfix">
                                 <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
                                     <label htmlFor="email_address_2">Short Description</label>

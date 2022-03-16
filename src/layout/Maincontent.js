@@ -16,16 +16,16 @@ import Portfolio from  '../pages/Portfolio'
 const Maincontent = () => {
     return (
         <>
-        <Header/>
+            <Header/>
             <Routes>
-        
-            <Route path="/" element={<Test/>}/>
-            <Route path="/Home" element={<Home/>}/>
-            <Route path="/About" element={<About/>}/>
-            <Route path="/Education" element={<Education/>}/>
-            <Route path="/Experience" element={<Experience/>}/>
-            <Route path="/Skill" element={<Skill/>}/>
-            <Route path="/Portfolio" element={<Portfolio/>}/>
+
+                <Route path="/" element={<Test/>}/>
+                <Route path="/Home" element={<Home/>}/>
+                <Route path="/About" element={<About/>}/>
+                <Route path="/Education" element={<Education/>}/>
+                <Route path="/Experience" element={<Experience/>}/>
+                <Route path="/Skill" element={<Skill/>}/>
+                <Route path="/Portfolio" element={<Portfolio/>}/>
 
 
 

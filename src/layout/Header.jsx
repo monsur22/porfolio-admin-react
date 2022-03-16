@@ -28,13 +28,16 @@ const Header = () => {
     }
     useEffect(()=>{
         const token = userInfo?.token;
-
+        console.log(token)
         //JWT check if token expired
         if(token){
             const decodedToken = decode(token)
-            if(decodedToken.exp*1000 < new Date().getTime()) logoutHandler();
+            if(decodedToken.exp*1000 < new Date().getTime()){
+                logoutHandler();
+                navigate('/', {replace: true});
+            }
         }
-        navigate('/', {replace: true});
+
     },[navigate])
 
     return (
@@ -292,6 +295,12 @@ const Header = () => {
                     </div>
                     </li>
                     <li className="active open"><a href="index.html"><i className="zmdi zmdi-home" /><span>Dashboard</span></a></li>
+                    <li className=""><Link to={'/Home'}><i className="zmdi zmdi-home" /><span>Home</span></Link></li>
+                    <li className=""><Link to={'/Education'}><i className="zmdi zmdi-home" /><span>Education</span></Link></li>
+                    <li className=""><Link to={'/Experience'}><i className="zmdi zmdi-home" /><span>Experience</span></Link></li>
+                    <li className=""><Link to={'/Skill'}><i className="zmdi zmdi-home" /><span>Skill</span></Link></li>
+                    <li className=""><Link to={'/Portfolio'}><i className="zmdi zmdi-home" /><span>Portfolio</span></Link></li>
+                    <li className=""><Link to={'/About'}><i className="zmdi zmdi-home" /><span>About</span></Link></li>
                     <li><a href="javascript:void(0);" className="menu-toggle"><i className="zmdi zmdi-apps" /><span>App</span></a>
                     <ul className="ml-menu">
                         <li><a href="mail-inbox.html">Email</a></li>

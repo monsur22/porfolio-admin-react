@@ -73,7 +73,7 @@ const Singup = () => {
                         </div>
                         </div>
                         <div className="input-group mb-3">
-                        <input type="email" className="form-control" placeholder="Enter Email"  name="email"  placeholder="Enter email"onChange={(e) => setEmail(e.target.value)}/>
+                        <input type="email" className="form-control" placeholder="Enter Email"  name="email"  onChange={(e) => setEmail(e.target.value)}/>
                         <div className="input-group-append">
                             <span className="input-group-text"><i className="zmdi zmdi-email" /></span>
                         </div>
