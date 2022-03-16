@@ -1,9 +1,9 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-
+import decode from 'jwt-decode'
 import {
     Nav,
     Navbar,
@@ -15,6 +15,7 @@ import { logout } from '../actions/userAction'
 
 const Header = () => {
     const dispatch = useDispatch()
+    const  navigate = useNavigate();
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -25,7 +26,16 @@ const Header = () => {
         dispatch(logout())
 
     }
+    useEffect(()=>{
+        const token = userInfo?.token;
 
+        //JWT check if token expired
+        if(token){
+            const decodedToken = decode(token)
+            if(decodedToken.exp*1000 < new Date().getTime()) logoutHandler();
+        }
+        navigate('/', {replace: true});
+    },[navigate])
 
     return (
         <>
