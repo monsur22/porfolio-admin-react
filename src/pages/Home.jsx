@@ -6,7 +6,7 @@ import axios from 'axios';
 const Home = (props) => {
     const  navigate = useNavigate();
     const [data, setData] = useState({});
-    const [Name, setName] = useState('');
+    const [name, setName] = useState('');
     const [position, setPosition] = useState('');
     const [skype, setSkype] = useState('');
     const [github, setGithub] = useState('');
@@ -38,6 +38,29 @@ const Home = (props) => {
 
         fetchData();
       }, []);
+      async function updateHome(id){
+        const formData = new FormData(e.target)
+        formData.append('name', name);
+        formData.append('position', position);
+        formData.append('tittle', tittle);
+        formData.append('facebook', facebook);
+        formData.append('github', github);
+        formData.append('skype', skype);
+        formData.append('linkedin', linkedin);
+        console.log("formData",formData)
+      const result = await fetch("http://localhost:8000/api/portfolio/home/1",{
+          method: 'PUT',
+          body: formData,
+          headers: { Authorization: `Bearer ${token}` }
+
+      });
+    //   console.log(props.match.params.id);
+    //   console.log(result)
+
+      // alert("Data hasbeen updated")
+      // getData()
+    //   history.push("/");
+    }
     return (
         <>
             <section className="content">
@@ -68,7 +91,7 @@ const Home = (props) => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Name" defaultValue={data.name} onChange={(e) => setName(e.target.value)} />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Name"  name="name" defaultValue={data.name} onChange={(e) => setName(e.target.value)} />
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +101,7 @@ const Home = (props) => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Position" defaultValue={data.position} onChange={(e) => setPosition(e.target.value)}/>
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Position" name="position" defaultValue={data.position} onChange={(e) => setPosition(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +111,7 @@ const Home = (props) => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Tittle" defaultValue={data.tittle} onChange={(e) => setTitle(e.target.value)}/>
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Tittle" name="tittle" defaultValue={data.tittle} onChange={(e) => setTitle(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +121,7 @@ const Home = (props) => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Facebook" defaultValue={data.facebook} onChange={(e) => setFacebook(e.target.value)} />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Facebook" name="facebook" defaultValue={data.facebook} onChange={(e) => setFacebook(e.target.value)} />
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +131,7 @@ const Home = (props) => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Github" defaultValue={data.github} onChange={(e) => setGithub(e.target.value)}/>
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Github" name="github" defaultValue={data.github} onChange={(e) => setGithub(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +141,7 @@ const Home = (props) => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Skype" defaultValue={data.skype} onChange={(e) => setSkype(e.target.value)}/>
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Skype" name="skype" defaultValue={data.skype} onChange={(e) => setSkype(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -128,13 +151,13 @@ const Home = (props) => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="LinkedIn" defaultValue={data.linkedin} onChange={(e) => setLinkedin(e.target.value)}/>
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="LinkedIn" name="linkedin" defaultValue={data.linkedin} onChange={(e) => setLinkedin(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
                             <div className="row clearfix">
                             <div className="col-sm-8 offset-sm-2">
-                                <button type="button" className="btn btn-raised btn-primary btn-round waves-effect">SUBMIT</button>
+                                <button type="button" className="btn btn-raised btn-primary btn-round waves-effect" onClick={()=>updateHome(data.id)} >SUBMIT</button>
                             </div>
                             </div>
                         </form>
