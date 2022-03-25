@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios';
 
-const Home = (props) => {
+const Home = () => {
     const  navigate = useNavigate();
     const [data, setData] = useState({});
     const [name, setName] = useState('');
@@ -13,33 +13,43 @@ const Home = (props) => {
     const [facebook, setFacebook] = useState('');
     const [tittle, setTitle] = useState('');
     const [linkedin, setLinkedin] = useState('');
-    const apiUrl = "http://localhost:8000/api/portfolio/home/1/edit";
-
-      console.warn("props",apiUrl)
 
     const userLogin = useSelector((state) => state.userLogin)
     const {  userInfo } = userLogin
+    
+    const apiUrl = "http://localhost:8000/api/portfolio/home/1/edit";
+
     useEffect(() => {
         if (!userInfo){
             navigate('/singin', {replace: true});
         }
     }, [ userInfo])
+
     const token =  userInfo.token;
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
     console.log("config",token)
-        useEffect(() => {
-        const fetchData = async () => {
-          const result = await axios.get(apiUrl,config)
-          setData(result.data);
-          console.log(result.data);
-        };
 
-        fetchData();
-      }, []);
-      async function updateHome(id){
-        const formData = new FormData(e.target)
+
+
+    useEffect(async () => {
+        let result = await fetch(apiUrl,config)
+        result = await result.json();
+        setData(result);
+        console.log(result);
+        setName(result.name)
+        setPosition(result.position)
+        setTitle(result.tittle);
+        setFacebook(result.facebook);
+        setGithub(result.github);
+        setSkype(result.skype);
+        setLinkedin(result.linkedin);
+    console.log(result);
+    },[]);
+
+    async function updateHome(id){
+        const formData = new FormData()
         formData.append('name', name);
         formData.append('position', position);
         formData.append('tittle', tittle);
@@ -47,15 +57,10 @@ const Home = (props) => {
         formData.append('github', github);
         formData.append('skype', skype);
         formData.append('linkedin', linkedin);
-        console.log("formData",formData)
-      const result = await fetch("http://localhost:8000/api/portfolio/home/1",{
-          method: 'PUT',
-          body: formData,
-          headers: { Authorization: `Bearer ${token}` }
 
-      });
-    //   console.log(props.match.params.id);
-    //   console.log(result)
+        const result=axios.post('http://localhost:8000/api/updatehome/1', formData, config)
+
+      console.log(result)
 
       // alert("Data hasbeen updated")
       // getData()
@@ -72,7 +77,6 @@ const Home = (props) => {
                     <ul className="breadcrumb">
                         <li className="breadcrumb-item"><a href="index.html"><i className="zmdi zmdi-home" /> Home</a></li>
                     </ul>
-                    {/* <button className="btn btn-primary btn-icon mobile_menu" type="button"><i className="zmdi zmdi-sort-amount-desc" /></button> */}
                     </div>
                     <div className="col-lg-5 col-md-6 col-sm-12">
                     <button className="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i className="zmdi zmdi-arrow-right" /></button>
@@ -84,7 +88,6 @@ const Home = (props) => {
                     <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="card">
                         <div className="body">
-                        <form className="form-horizontal">
                             <div className="row clearfix">
                                 <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
                                     <label htmlFor="email_address_2">Name</label>
@@ -160,7 +163,6 @@ const Home = (props) => {
                                 <button type="button" className="btn btn-raised btn-primary btn-round waves-effect" onClick={()=>updateHome(data.id)} >SUBMIT</button>
                             </div>
                             </div>
-                        </form>
                         </div>
                     </div>
                     </div>
