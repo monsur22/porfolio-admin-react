@@ -1,20 +1,64 @@
 import React, { useEffect, useState  } from 'react'
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const Education = () => {
-  const [data, setData] = useState([]);
-  useEffect(async () => {
-    await axios.get("http://localhost:8000/api/geteducation")
-    .then(function(response) {
-        console.log(response.data);
-        setData(response.data);
+    const [data, setData] = useState([]);
+    const [degree, setDegree] = useState('');
+    const [year, setYear] = useState('');
+    const [school, setSchool] = useState('');
+    const [s_desc, setDescription] = useState('');
 
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+    const userLogin = useSelector((state) => state.userLogin)
+    const {  userInfo } = userLogin
+
+  useEffect(async () => {
+      function getData(){
+        axios.get("http://localhost:8000/api/geteducation")
+        .then(function(response) {
+            console.log(response.data);
+            setData(response.data);
+
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+      }
+      getData();
     }, []);
-console.log(data);
+const getData = async () => {
+    axios.get(`http://localhost:8000/api/geteducation`)
+        .then((getData) => {
+            setData(getData.data);
+        })
+}
+    const token =  userInfo.token;
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+
+    async function addData() {
+        console.warn(degree, year,school, s_desc)
+
+        const formData = new FormData()
+        formData.append('degree', degree);
+        formData.append('year', year);
+        formData.append('school', school);
+        formData.append('s_desc', s_desc);
+
+        const result = await fetch('http://localhost:8000/api/portfolio/education', {
+            method: 'POST',
+            body: formData,
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        // const result=axios.post('http://localhost:8000/api/model', formData)
+
+        console.table(result)
+        // alert("Data hasbeen added")
+        // history.push("/");
+        getData();
+    }
+    console.log(data);
 //   const showbyId = (id) =>{
 //     console.log(id);
 //     // history.push("/edit/"+id);
@@ -39,17 +83,7 @@ console.log(data);
                 </div>
                 </div>
                 <div className="container-fluid">
-                {/* Vertical Layout */}
-                {/* <div className="row clearfix">
-                    <div className="col-lg-12 col-md-12 col-sm-12">
-                    <div className="alert alert-warning" role="alert">
-                        <strong>Bootstrap</strong> Better check yourself, <a target="_blank" href="https://getbootstrap.com/docs/4.2/components/forms/">View More</a>
-                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"><i className="zmdi zmdi-close" /></span>
-                        </button>
-                    </div>
-                    </div>
-                </div> */}
+
                 {/* Horizontal Layout */}
                 <div className="row clearfix">
                     <div className="col-lg-12 col-md-12 col-sm-12">
@@ -62,7 +96,7 @@ console.log(data);
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Degree" />
+                                    <input type="text" id="email_address_2" className="form-control" name="degree"  value={degree} onChange={(e)=>setDegree(e.target.value)} placeholder="Degree" />
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +106,17 @@ console.log(data);
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Year Range" />
+                                    <input type="text" id="email_address_2" className="form-control" name="year"  value={year} onChange={(e)=>setYear(e.target.value)} placeholder="Year Range" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row clearfix">
+                                <div className="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label htmlFor="email_address_2">School</label>
+                                </div>
+                                <div className="col-lg-10 col-md-10 col-sm-8">
+                                    <div className="form-group">
+                                    <input type="text" id="email_address_2" className="form-control" name="school"  value={school} onChange={(e)=>setSchool(e.target.value)} placeholder="School" />
                                     </div>
                                 </div>
                             </div>
@@ -83,14 +127,14 @@ console.log(data);
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div class="form-group">
                                             <div class="form-line">
-                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"></textarea>
+                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description" name="s_desc" value={s_desc} onChange={(e)=>setDescription(e.target.value)} ></textarea>
                                             </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="row clearfix">
                             <div className="col-sm-8 offset-sm-2">
-                                <button type="button" className="btn btn-raised btn-primary btn-round waves-effect">SUBMIT</button>
+                                <button type="button" className="btn btn-raised btn-primary btn-round waves-effect" onClick = { addData}>SUBMIT</button>
                             </div>
                             </div>
                         </form>

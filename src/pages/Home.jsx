@@ -16,7 +16,7 @@ const Home = () => {
 
     const userLogin = useSelector((state) => state.userLogin)
     const {  userInfo } = userLogin
-    
+
     const apiUrl = "http://localhost:8000/api/portfolio/home/1/edit";
 
     useEffect(() => {
@@ -61,7 +61,7 @@ const Home = () => {
         const result=axios.post('http://localhost:8000/api/updatehome/1', formData, config)
 
       console.log(result)
-
+      navigate('/Home');
       // alert("Data hasbeen updated")
       // getData()
     //   history.push("/");
