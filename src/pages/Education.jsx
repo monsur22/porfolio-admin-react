@@ -1,7 +1,6 @@
 import React, { useEffect, useState  } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-
 const Education = () => {
     const [data, setData] = useState([]);
     const [degree, setDegree] = useState('');
@@ -26,12 +25,12 @@ const Education = () => {
       }
       getData();
     }, []);
-const getData = async () => {
-    axios.get(`http://localhost:8000/api/geteducation`)
-        .then((getData) => {
-            setData(getData.data);
-        })
-}
+    const getData = async () => {
+        axios.get(`http://localhost:8000/api/geteducation`)
+            .then((getData) => {
+                setData(getData.data);
+            })
+    }
     const token =  userInfo.token;
     const config = {
         headers: { Authorization: `Bearer ${token}` }
@@ -56,6 +55,11 @@ const getData = async () => {
         console.table(result)
         // alert("Data hasbeen added")
         // history.push("/");
+        setDegree('');
+        setYear('');
+        setSchool('');
+        setDescription('');
+
         getData();
     }
     console.log(data);
