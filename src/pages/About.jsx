@@ -1,6 +1,78 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios';
+
 
 const About = () => {
+    const  navigate = useNavigate();
+    const [data, setData] = useState({});
+    const [tittle, setTittle] = useState('');
+    const [s_desc, setSdesc] = useState('');
+    const [birth, setBirth] = useState('');
+    const [age, setAge] = useState('');
+    const [web, setWeb] = useState('');
+    const [degree, setDegree] = useState('');
+    const [email, setEmail] = useState('');
+    const [city, setCity] = useState('');
+    const [desc, setDesc] = useState('');
+
+    const userLogin = useSelector((state) => state.userLogin)
+    const {  userInfo } = userLogin
+
+    const apiUrl = "http://localhost:8000/api/portfolio/about/1/edit";
+
+    useEffect(() => {
+        if (!userInfo){
+            navigate('/singin', {replace: true});
+        }
+    }, [ userInfo])
+
+    const token =  userInfo.token;
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+    console.log("config",token)
+
+
+
+    useEffect(async () => {
+        let result = await fetch(apiUrl,config)
+        result = await result.json();
+        setData(result);
+        console.log(result);
+        setTittle(result.name)
+        setSdesc(result.position)
+        setBirth(result.tittle);
+        setAge(result.facebook);
+        setWeb(result.github);
+        setDegree(result.skype);
+        setEmail(result.linkedin);
+        setCity(result.linkedin);
+        setDesc(result.linkedin);
+    console.log(result);
+    },[]);
+
+    async function updateAbout(id){
+        const formData = new FormData()
+        formData.append('tittle', tittle);
+        formData.append('s_desc', s_desc);
+        formData.append('birth', birth);
+        formData.append('age', age);
+        formData.append('web', web);
+        formData.append('degree', degree);
+        formData.append('email', email);
+        formData.append('city', city);
+        formData.append('desc', desc);
+
+        const result=axios.post('http://localhost:8000/api/updateabout/1', formData, config)
+
+      console.log(result)
+      navigate('/About');
+      // alert("Data hasbeen updated")
+      // getData()
+    //   history.push("/");
+    }
     return (
         <>
             <section className="content">
@@ -12,7 +84,6 @@ const About = () => {
                     <ul className="breadcrumb">
                         <li className="breadcrumb-item"><a href="index.html"><i className="zmdi zmdi-home" /> About</a></li>
                     </ul>
-                    {/* <button className="btn btn-primary btn-icon mobile_menu" type="button"><i className="zmdi zmdi-sort-amount-desc" /></button> */}
                     </div>
                     <div className="col-lg-5 col-md-6 col-sm-12">
                     <button className="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i className="zmdi zmdi-arrow-right" /></button>
@@ -20,18 +91,6 @@ const About = () => {
                 </div>
                 </div>
                 <div className="container-fluid">
-                {/* Vertical Layout */}
-                {/* <div className="row clearfix">
-                    <div className="col-lg-12 col-md-12 col-sm-12">
-                    <div className="alert alert-warning" role="alert">
-                        <strong>Bootstrap</strong> Better check yourself, <a target="_blank" href="https://getbootstrap.com/docs/4.2/components/forms/">View More</a>
-                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"><i className="zmdi zmdi-close" /></span>
-                        </button>
-                    </div>
-                    </div>
-                </div> */}
-                {/* Horizontal Layout */}
                 <div className="row clearfix">
                     <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="card">
@@ -43,7 +102,7 @@ const About = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Tittle" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Tittle" name="tittle" defaultValue={data.tittle} onChange={(e) => setTittle(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +113,7 @@ const About = () => {
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div class="form-group">
                                             <div class="form-line">
-                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"></textarea>
+                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"name="s_desc" defaultValue={data.s_desc} onChange={(e) => setSdesc(e.target.value)}></textarea>
                                             </div>
                                     </div>
                                 </div>
@@ -65,7 +124,7 @@ const About = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Birthday" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Birthday" name="birth" defaultValue={data.birth} onChange={(e) => setBirth(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +134,7 @@ const About = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Age" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Age" name="age" defaultValue={data.age} onChange={(e) => setAge(e.target.value)} />
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +144,7 @@ const About = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Website" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Website" name="web" defaultValue={data.web} onChange={(e) => setWeb(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +154,7 @@ const About = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Degree" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Degree" name="degree" defaultValue={data.degree} onChange={(e) => setDegree(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +164,7 @@ const About = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Email" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Email" name="email" defaultValue={data.email} onChange={(e) => setEmail(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +174,7 @@ const About = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="City" />
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="City" name="city" defaultValue={data.city} onChange={(e) => setCity(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -126,14 +185,14 @@ const About = () => {
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div class="form-group">
                                             <div class="form-line">
-                                                <textarea rows="4" class="form-control no-resize" placeholder="Description"></textarea>
+                                                <textarea rows="4" class="form-control no-resize" placeholder="Description" name="desc" defaultValue={data.desc} onChange={(e) => setDesc(e.target.value)}></textarea>
                                             </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="row clearfix">
                             <div className="col-sm-8 offset-sm-2">
-                                <button type="button" className="btn btn-raised btn-primary btn-round waves-effect">SUBMIT</button>
+                                <button type="button" className="btn btn-raised btn-primary btn-round waves-effect"onClick={()=>updateAbout(data.id)}>SUBMIT</button>
                             </div>
                             </div>
                         </form>
