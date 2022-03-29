@@ -294,22 +294,22 @@ const Header = () => {
                         </div>
                     </div>
                     </li>
-                    <li className="active open"><a href="index.html"><i className="zmdi zmdi-home" /><span>Dashboard</span></a></li>
+                    <li className="active open"><Link to={'/'}><i className="zmdi zmdi-home" /><span>Dashboard</span></Link></li>
                     <li className=""><Link to={'/Home'}><i className="zmdi zmdi-apps" /><span>Home</span></Link></li>
                     <li className=""><Link to={'/Education'}><i className="zmdi zmdi-apps" /><span>Education</span></Link></li>
                     <li className=""><Link to={'/Experience'}><i className="zmdi zmdi-apps" /><span>Experience</span></Link></li>
                     <li className=""><Link to={'/Skill'}><i className="zmdi zmdi-apps" /><span>Skill</span></Link></li>
                     <li className=""><Link to={'/Portfolio'}><i className="zmdi zmdi-apps" /><span>Portfolio</span></Link></li>
                     <li className=""><Link to={'/About'}><i className="zmdi zmdi-apps" /><span>About</span></Link></li>
-                    <li><a href="javascript:void(0);" className="menu-toggle"><i className="zmdi zmdi-apps" /><span>App</span></a>
+                    {/* <li><a href="javascript:void(0);" className="menu-toggle"><i className="zmdi zmdi-apps" /><span>App</span></a>
                     <ul className="ml-menu">
                         <li><a href="mail-inbox.html">Email</a></li>
                         <li><a href="chat.html">Chat Apps</a></li>
                         <li><a href="events.html">Calendar</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
-                    </li>
-                    <li> <a href="javascript:void(0);" className="menu-toggle"><i className="zmdi zmdi-assignment" /><span>Projects</span></a>
+                    </li> */}
+                    {/* <li> <a href="javascript:void(0);" className="menu-toggle"><i className="zmdi zmdi-assignment" /><span>Projects</span></a>
                     <ul className="ml-menu">
                         <li><a href="project-list.html">Projects List</a></li>
                         <li><a href="taskboard.html">Taskboard</a></li>
@@ -433,8 +433,8 @@ const Header = () => {
                         <li><a href="yandex.html">YandexMap</a></li>
                         <li><a href="jvectormap.html">jVectorMap</a></li>
                     </ul>
-                    </li>
-                    <li>
+                    </li> */}
+                    {/* <li>
                     <div className="progress-container progress-primary m-t-10">
                         <span className="progress-badge">Traffic this Month</span>
                         <div className="progress">
@@ -451,7 +451,7 @@ const Header = () => {
                         </div>
                         </div>
                     </div>
-                    </li>
+                    </li> */}
                 </ul>
                 </div>
             </aside>

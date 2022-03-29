@@ -1,9 +1,11 @@
 import React, { useEffect, useState  } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link , useNavigate, useParams} from 'react-router-dom';
 
-const Experience = () => {
+
+const EducationEdit = (props) => {
     const [data, setData] = useState([]);
     const [position, setPosition] = useState('');
     const [year, setYear] = useState('');
@@ -12,36 +14,43 @@ const Experience = () => {
     const [s_desc2, setDescription2] = useState('');
     const [s_desc3, setDescription3] = useState('');
     const [s_desc4, setDescription4] = useState('');
-
+    const { id } = useParams();
     let navigate = useNavigate();
+
+    const apiUrl = "http://localhost:8000/api/portfolio/experience/" + id +"/edit";
+    console.warn("props",id)
 
     const userLogin = useSelector((state) => state.userLogin)
     const {  userInfo } = userLogin
 
+    const token =  userInfo.token;
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
     useEffect(async () => {
-      await axios.get("http://localhost:8000/api/getexperience")
-      .then(function(response) {
-          console.log(response.data);
-          setData(response.data);
+        let result = await fetch(apiUrl,config)
+        result = await result.json();
+        setData(result);
+        console.log(result);
+        setPosition(result.position)
+        setYear(result.year)
+        setCompany(result.company)
+        setDescription1(result.s_desc)
+        setDescription2(result.s_desc1)
+        setDescription3(result.s_desc2)
+        setDescription4(result.s_desc3)
 
-      })
-      .catch(function(error) {
-          console.log(error);
-      });
-      }, []);
-      const getData = async () => {
+    },[]);
+    const getData = async () => {
         axios.get(`http://localhost:8000/api/getexperience`)
             .then((getData) => {
                 setData(getData.data);
             })
     }
-    const token =  userInfo.token;
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
 
-    async function addData() {
-        // console.warn(degree, year,school, s_desc)
+
+
+    async function updateData(id) {
 
         const formData = new FormData()
         formData.append('position', position);
@@ -52,39 +61,19 @@ const Experience = () => {
         formData.append('s_desc3', s_desc3);
         formData.append('s_desc4', s_desc4);
 
-        const result = await fetch('http://localhost:8000/api/portfolio/experience', {
-            method: 'POST',
-            body: formData,
-            headers: { Authorization: `Bearer ${token}` }
-        });
-        // const result=axios.post('http://localhost:8000/api/model', formData)
 
+        const result=axios.post('http://localhost:8000/api/updateExperience/'+ id, formData, config)
+
+        console.log(id);
         console.table(result)
-        // alert("Data hasbeen added")
-        // history.push("/");
-        setPosition('');
-        setYear('');
-        setCompany('');
-        setDescription1('');
-        setDescription2('');
-        setDescription3('');
-        setDescription4('');
 
+        navigate('/Experience');
         getData();
     }
-    const edit = (id) =>{
-        console.log(id);
-        navigate(`/experience/edit/${id}`);
-        // history.push("/edit/"+id);
-    }
-    async function deleteData(id) {
-        console.log(id);
-        const result = await fetch('http://localhost:8000/api/portfolio/experience/'+id, {
-            method: 'DELETE',
-            headers: { Authorization: `Bearer ${token}` }
-        });
-        getData();
-    }
+    console.log(data);
+
+
+
     return (
         <>
             <section className="content">
@@ -116,7 +105,7 @@ const Experience = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Position" name="position" value={position} onChange={(e)=>setPosition(e.target.value)}/>
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Position" name="position" defaultValue={data.position} onChange={(e)=>setPosition(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +115,7 @@ const Experience = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Year" name="year" value={year} onChange={(e)=>setYear(e.target.value)}/>
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Year" name="year" defaultValue={data.year} onChange={(e)=>setYear(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +125,7 @@ const Experience = () => {
                                 </div>
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div className="form-group">
-                                    <input type="text" id="email_address_2" className="form-control" placeholder="Company" name="company" value={company} onChange={(e)=>setCompany(e.target.value)}/>
+                                    <input type="text" id="email_address_2" className="form-control" placeholder="Company" name="company" defaultValue={data.company} onChange={(e)=>setCompany(e.target.value)}/>
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +136,7 @@ const Experience = () => {
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div class="form-group">
                                             <div class="form-line">
-                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"name="s_desc1" value={s_desc1} onChange={(e)=>setDescription1(e.target.value)}></textarea>
+                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"name="s_desc1" defaultValue={data.s_desc1} onChange={(e)=>setDescription1(e.target.value)}></textarea>
                                             </div>
                                     </div>
                                 </div>
@@ -159,7 +148,7 @@ const Experience = () => {
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div class="form-group">
                                             <div class="form-line">
-                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"name="s_desc2" value={s_desc2} onChange={(e)=>setDescription2(e.target.value)}></textarea>
+                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"name="s_desc2" defaultValue={data.s_desc2} onChange={(e)=>setDescription2(e.target.value)}></textarea>
                                             </div>
                                     </div>
                                 </div>
@@ -171,7 +160,7 @@ const Experience = () => {
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div class="form-group">
                                             <div class="form-line">
-                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"name="s_desc3" value={s_desc3} onChange={(e)=>setDescription3(e.target.value)}></textarea>
+                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"name="s_desc3" defaultValue={data.s_desc3} onChange={(e)=>setDescription3(e.target.value)}></textarea>
                                             </div>
                                     </div>
                                 </div>
@@ -183,14 +172,14 @@ const Experience = () => {
                                 <div className="col-lg-10 col-md-10 col-sm-8">
                                     <div class="form-group">
                                             <div class="form-line">
-                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"name="s_desc4" value={s_desc4} onChange={(e)=>setDescription4(e.target.value)}></textarea>
+                                                <textarea rows="2" class="form-control no-resize" placeholder="Short Description"name="s_desc4" defaultValue={data.s_desc4} onChange={(e)=>setDescription4(e.target.value)}></textarea>
                                             </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="row clearfix">
                             <div className="col-sm-8 offset-sm-2">
-                                <button type="button" className="btn btn-raised btn-primary btn-round waves-effect" onClick = { addData}>SUBMIT</button>
+                                <button type="button" className="btn btn-raised btn-primary btn-round waves-effect" onClick={()=>updateData(data.id)}>SUBMIT</button>
                             </div>
                             </div>
                         </form>
@@ -201,44 +190,8 @@ const Experience = () => {
 
 
                 </div>
-                <div className="container-fluid">
-                {/* Basic Examples */}
-                <div className="row clearfix">
-                    <div className="col-lg-12">
-                    <div className="card">
-                        <div className="body">
-                        <div className="table-responsive">
-                            <table className="table table-bordered table-striped table-hover js-basic-example dataTable">
-                            <thead>
-                                <tr>
-                                <th>ID</th>
-                                <th>Position</th>
-                                <th>Company</th>
-                                <th>Year</th>
-                                <th>Action</th>
-                                </tr>
-                            </thead>
-                                <tbody>
-                            {data.map((item) => (
 
-                                    <tr>
-                                    <td>{item.id}</td>
-                                    <td>{item.position}</td>
-                                    <td>{item.company}</td>
-                                    <td>{item.year}</td>
-                                    <td><i className="zmdi zmdi-edit ml-3" component={Link}  onClick={() => edit(item.id)}/>  <i className="zmdi zmdi-delete ml-3" component={Link}  onClick={() => deleteData(item.id)} /> </td>
-                                    </tr>
-                            ))}
 
-                                </tbody>
-
-                            </table>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
             </div>
             </section>
 
@@ -246,4 +199,4 @@ const Experience = () => {
     )
 }
 
-export default Experience;
+export default EducationEdit;

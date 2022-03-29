@@ -1,12 +1,15 @@
 import React, { useEffect, useState  } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Skill = () => {
     const [data, setData] = useState([]);
     const [tittle, setTittle] = useState('');
     const [image, setImage] = useState('');
     const [s_desc, setDescription] = useState('');
+
+    let navigate = useNavigate();
 
     const userLogin = useSelector((state) => state.userLogin)
     const {  userInfo } = userLogin
@@ -56,6 +59,19 @@ const Skill = () => {
         setImage('');
         setDescription('');
 
+        getData();
+    }
+    const edit = (id) =>{
+        console.log(id);
+        navigate(`/skill/edit/${id}`);
+        // history.push("/edit/"+id);
+    }
+    async function deleteData(id) {
+        console.log(id);
+        const result = await fetch('http://localhost:8000/api/portfolio/skill/'+id, {
+            method: 'DELETE',
+            headers: { Authorization: `Bearer ${token}` }
+        });
         getData();
     }
     return (
@@ -157,7 +173,7 @@ const Skill = () => {
                                 <tr>
                                 <td>{item.id}</td>
                                 <td>{item.tittle}</td>
-                                <td>Action</td>
+                                <td><i className="zmdi zmdi-edit ml-3" component={Link}  onClick={() => edit(item.id)}/>  <i className="zmdi zmdi-delete ml-3" component={Link}  onClick={() => deleteData(item.id)} /></td>
                                 </tr>
                             ))}
 

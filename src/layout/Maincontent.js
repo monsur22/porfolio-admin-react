@@ -13,6 +13,10 @@ import Education from  '../pages/Education'
 import Experience from  '../pages/Experience'
 import Skill from  '../pages/Skill'
 import Portfolio from  '../pages/Portfolio'
+import EducationEdit from "../pages/EducationEdit";
+import ExperienceEdit from "../pages/ExperienceEdit";
+import SkillEdit from "../pages/SkillEdit";
+import PortfolioEdit from "../pages/PortfolioEdit";
 const Maincontent = () => {
     return (
         <>
@@ -23,9 +27,13 @@ const Maincontent = () => {
                 <Route path="/Home" element={<Home/>}/>
                 <Route path="/About" element={<About/>}/>
                 <Route path="/Education" element={<Education/>}/>
+                <Route path="/education/edit/:id" element={<EducationEdit/>}/>
                 <Route path="/Experience" element={<Experience/>}/>
+                <Route path="/experience/edit/:id" element={<ExperienceEdit/>}/>
                 <Route path="/Skill" element={<Skill/>}/>
+                <Route path="/skill/edit/:id" element={<SkillEdit/>}/>
                 <Route path="/Portfolio" element={<Portfolio/>}/>
+                <Route path="/portfolio/edit/:id" element={<PortfolioEdit/>}/>
 
 
 
