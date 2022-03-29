@@ -81,7 +81,7 @@ const EducationEdit = (props) => {
                 <div className="block-header">
                 <div className="row">
                     <div className="col-lg-7 col-md-6 col-sm-12">
-                    <h2>Education</h2>
+                    <h2>Portfolio Update</h2>
                     <ul className="breadcrumb">
                         <li className="breadcrumb-item"><a href="index.html"><i className="zmdi zmdi-home" /> Portfolio</a></li>
                     </ul>
